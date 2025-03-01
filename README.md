@@ -3,8 +3,7 @@
 ## Objetivo do Projeto
 Este projeto contém cinco automações utilizando **AWS Lambda** para executar tarefas específicas dentro da AWS, integradas com outros serviços como **S3, EC2 e EventBridge**. O objetivo é demonstrar como funções Lambda podem ser usadas para facilitar a automação de tarefas na nuvem.
 
-As automações desenvolvidas neste projeto são baseadas em ideias do **curso de Python ministrado por André Iacono na Udemy**. Atualmente, **três das cinco automações** já foram implementadas e documentadas. As demais serão adicionadas futuramente.
-
+As automações desenvolvidas neste projeto são baseadas em ideias do **curso de Python ministrado por André Iacono na Udemy**. 
 
 ## Automação 1 - Criação de Instância EC2
 - **Descrição:** Utiliza AWS Lambda para iniciar uma instância EC2 com parâmetros definidos via variáveis de ambiente.
@@ -23,10 +22,19 @@ As automações desenvolvidas neste projeto são baseadas em ideias do **curso d
 - **Agendamento:** Executado automaticamente a cada 24 horas pelo **Amazon EventBridge**.
 - **Detalhes:** [Leia mais](./3.script-backup/README.MD)
 
-## Próximas Automações
-Ainda serão adicionadas duas automações para completar o projeto:
-1. **Automação 4** - [Em desenvolvimento]
-2. **Automação 5** - [Em desenvolvimento]
+## Automação 4 - Iniciar e Parar Instâncias EC2 em Horários Programados
+- **Descrição:** Utiliza AWS Lambda para desligar instâncias EC2 às **20h** e ligá-las às **6h** de segunda a sexta-feira, reduzindo custos.
+- **Serviços AWS Utilizados:** Lambda, EC2, EventBridge Scheduler, CloudWatch Logs.
+- **Agendamento:**
+  - **Para desligar às 20h:** `cron(0 20 ? * MON-FRI *)`
+  - **Para ligar às 6h:** `cron(0 6 ? * MON-FRI *)`
+- **Detalhes:** [Leia mais](./4.script-ec2-start.stop/README.md)
+
+## Automação 5 - Backup Automático de Tabelas DynamoDB
+- **Descrição:** Cria backups automáticos da tabela **carros** no **Amazon DynamoDB** a cada 24 horas.
+- **Serviços AWS Utilizados:** Lambda, DynamoDB, EventBridge, CloudWatch Logs.
+- **Agendamento:** `rate(24 hours)`
+- **Detalhes:** [Leia mais](./5.script-backup-dynamodb/README.md)
 
 ## Como Executar
 Para cada automação, é necessário configurar as permissões adequadas no IAM e garantir que os serviços AWS utilizados estejam corretamente configurados. Cada pasta contém um **README.md** detalhando a configuração específica.
@@ -34,6 +42,5 @@ Para cada automação, é necessário configurar as permissões adequadas no IAM
 ## Contribuições e Melhorias
 Este projeto está em constante evolução. Qualquer sugestão de melhoria ou contribuição é bem-vinda!
 
----
-📌 **Este repositório será atualizado com as duas automações restantes em breve!** 🚀
+
 
